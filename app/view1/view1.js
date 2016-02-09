@@ -9,6 +9,16 @@ angular.module('myApp.view1', ['ngRoute'])
   });
 }])
 
-.controller('View1Ctrl', [function() {
+.controller('View1Ctrl', ['$scope', function($scope) {
+  $scope.UserName = '';
+  $scope.Password = '';
+  $scope.submit = function() {
+    window.alert("hi!");
+    if ($scope.text && $scope.Password) {
+      $window.alert("Hello " + $scope.UserName);
+    }else {
+      $window.alert("Missing Details ");
+    }
+  };
 
 }]);

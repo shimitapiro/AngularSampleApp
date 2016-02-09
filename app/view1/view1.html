@@ -1,1 +1,8 @@
-<p>This is the partial for view 1.</p>
+<p>Login Screen</p>
+
+<form ng-submit="submit()"  ng-controller="View1Ctrl">
+    UserName :<input type="text" ng-model="UserName" name="text" /><br>
+    Password :<input type="password" ng-model="Password" name="text" /><br>
+    <input type="submit" id="submit" value="submit" />
+    <pre>list={{UserName}}</pre>
+</form>
