@@ -13,7 +13,7 @@ view1module.factory('login',['$http', function($http)
 {
   //var _response;
       var service = {};
-
+//ss
   service.getToken = function(username,password)
   {
         $http({
