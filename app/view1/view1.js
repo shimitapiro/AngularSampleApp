@@ -9,11 +9,11 @@ view1module.config(['$routeProvider', function($routeProvider) {
   });
 }]);
 
-view1module.factory('login',['$http', function($http)
+view1module.factory('login',['$http','$location', function($http,$location)
 {
   //var _response;
       var service = {};
-//ss
+
   service.getToken = function(username,password)
   {
         $http({
@@ -31,6 +31,8 @@ view1module.factory('login',['$http', function($http)
           }
         }).then(function successCallback(response) {
           console.log(response.data.accessToken);
+          $$scope.loginData = response;
+          $location.path( "/view2" );
         }, function errorCallback(response) {
           console.log('errro sts');
         });
