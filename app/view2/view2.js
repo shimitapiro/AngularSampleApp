@@ -1,36 +1,41 @@
 'use strict';
 
-var view2module = angular.module('myApp.view2', ['ngRoute'])
+var view2module = angular.module('myApp.view2', ['ngRoute']);
 
 
-.config(['$routeProvider', function($routeProvider) {
+view2module.config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/view2', {
     templateUrl: 'view2/view2.html',
     controller: 'View2Ctrl'
   });
 }])
 
-    .factory('MetaData',['$scope','$http',function($scope,$http){
-      $http({
-        url:'https://meta.etoro.com/V1.1/instruments?format=json',
-        method:'GET',
-        headers: {'AccountType': 'Real',
-          'applicationVersion': '1',
-          'applicationIdentifier': 'iOSOpenBook',
-          'Content-Type': 'application/json'
-        },
-      }).then(function successCallback(response) {
-        if (response){
-          console.log(response.length);
-          $scope.metaData =  response;
-        }else {
-          console.log('errro meta data');
-        }
+view1module.factory('meta',['$http','$location', function($http,$location)
+{
+  //var _response;
+  var service = {};
 
-      }, function errorCallback(response) {
-        console.log('errro meta data');
-      });
-    }])
-.controller('View2Ctrl', [function() {
+  service.metaData = {};
+  service.getMetaData = function()
+  {
+    return $http({
+      method: 'GET',
+      url: 'https://meta.etoro.com/V1.1/instruments?format=json'
+    })
+  }
 
+  return service;
 }]);
+
+view2module.controller('View2Ctrl', function($scope,  meta) {
+
+  meta.getMetaData().then(function successCallback(response) {
+    console.log(response.length);
+
+    $scope.metaData  = response.data.InstrumentDisplayDatas;
+
+  }, function errorCallback(response) {
+      console.log('errro meta data');
+  });
+
+});

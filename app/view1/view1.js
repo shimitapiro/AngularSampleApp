@@ -14,6 +14,7 @@ view1module.factory('login',['$http','$location', function($http,$location)
   //var _response;
       var service = {};
 
+ service.loginParams = {};
   service.getToken = function(username,password)
   {
         $http({
@@ -31,7 +32,7 @@ view1module.factory('login',['$http','$location', function($http,$location)
           }
         }).then(function successCallback(response) {
           console.log(response.data.accessToken);
-          $$scope.loginData = response;
+          service.loginParams = response;
           $location.path( "/view2" );
         }, function errorCallback(response) {
           console.log('errro sts');

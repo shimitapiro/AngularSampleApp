@@ -1,7 +1,10 @@
 
-<p>This is the partial for view 2.</p>
-<p>
-  Showing of 'interpolate' filter:
-  {{ 'Current version is v%VERSION%.' | interpolate }}
+<p>Show live rates</p>
 
-</p>
+
+<ul ng-controller="View2Ctrl" class="markets" >
+  <li ng-repeat="item in metaData">
+    <span>{{item.InstrumentDisplayName}}</span>
+    <p>{{item.SymbolFull}}</p>
+  </li>
+</ul>
