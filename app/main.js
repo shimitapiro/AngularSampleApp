@@ -9,8 +9,18 @@ require.config({
 
     shim: {
         'angular' : {'exports' : 'angular'},
-        'angular-route': ['angular']
+        'angular-route': ['angular'],
+        'app' : {
+            deps: ['angular-route', 'view1']
+        },
+        'view1' : {
+            deps : ['angular-route', 'loginModule']
+        }
+
+
     }
+
+
 });
 
 
@@ -18,6 +28,4 @@ require(['app'], function() {
     angular.element(document).ready(function() {
         angular.bootstrap(document, ['view1', 'app']);
     });
-
- //angular.bootstrap(document, ['app']);
 });

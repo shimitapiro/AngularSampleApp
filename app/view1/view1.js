@@ -1,5 +1,5 @@
 'use strict';
-define (['angular', 'angular-route', 'loginModule'],function () {
+define ([],function () {
 
   var view1module = angular.module('view1', ['ngRoute', 'loginModule']);
 
