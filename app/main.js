@@ -14,7 +14,7 @@ require.config({
 });
 
 
-require(['angular', 'angular-route','app', 'loginModule', 'view1'], function() {
+require(['app'], function() {
     angular.element(document).ready(function() {
         angular.bootstrap(document, ['view1', 'app']);
     });
