@@ -1,41 +1,52 @@
-'use strict';
+define(['myApp','View1Ctrl'],function(){
+  'use strict';
 
-var view2module = angular.module('myApp.view2', ['ngRoute']);
+  var view2module = angular.module('myApp.view2', ['ngRoute']);
 
 
-view2module.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/view2', {
-    templateUrl: 'view2/view2.html',
-    controller: 'View2Ctrl'
-  });
-}])
+  view2module.config(['$routeProvider', function($routeProvider) {
+    $routeProvider.when('/view2', {
+      templateUrl: 'view2/view2.html',
+      controller: 'View2Ctrl'
+    });
+  }])
 
-view1module.factory('meta',['$http','$location', function($http,$location)
-{
-  //var _response;
-  var service = {};
-
-  service.metaData = {};
-  service.getMetaData = function()
+  view1module.factory('meta',['$http','$location', function($http,$location)
   {
-    return $http({
-      method: 'GET',
-      url: 'https://meta.etoro.com/V1.1/instruments?format=json'
-    })
-  }
+    //var _response;
+    var service = {};
 
-  return service;
-}]);
+    service.metaData = {};
+    service.getMetaData = function()
+    {
+      return $http({
+        method: 'GET',
+        url: 'https://meta.etoro.com/V1.1/instruments?format=json'
+      })
+    }
 
-view2module.controller('View2Ctrl', function($scope,  meta) {
+    return service;
+  }]);
 
-  meta.getMetaData().then(function successCallback(response) {
-    console.log(response.length);
+  view2module.controller('View2Ctrl', function($scope,  meta) {
 
-    $scope.metaData  = response.data.InstrumentDisplayDatas;
+    meta.getMetaData().then(function successCallback(response) {
+      console.log(response.length);
 
-  }, function errorCallback(response) {
+      $scope.metaData  = response.data.InstrumentDisplayDatas;
+
+      require(["LightstreamerClient"],
+          function(LightstreamerClient) {
+            var myClient = new
+                LightstreamerClient("https://push-lightstreamer.cloud.etoro.com/",
+                "MyAdapterSet");
+            myClient.connect();
+
+          });
+
+    }, function errorCallback(response) {
       console.log('errro meta data');
-  });
+    });
 
+  });
 });
