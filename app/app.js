@@ -5,5 +5,11 @@ define (['angular', 'angular-route', 'view1'], function () {
     $routeProvider.otherwise({redirectTo: '/view1'});
   }]);
 
+
+  myApp.controller('PhoneListCtrl', function ($scope) {
+    $scope.gal = 'gal is the king';
+  });
+
+
   return myApp;
 });

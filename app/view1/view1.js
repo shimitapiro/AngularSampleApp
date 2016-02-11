@@ -13,7 +13,7 @@ define (['angular', 'angular-route'],function () {
 
   view1module.controller('View1Ctrl', function($scope, login) {
     $scope.UserName = '';
-    $scope.Password = '';
+    $scope.Password = '123456';
     $scope.submit = function () {
       login.getToken($scope.UserName, $scope.Password);
     };

@@ -7,7 +7,6 @@ require.config({
         'loginModule': 'loginModule'
     },
 
-
     shim: {
         'angular' : {'exports' : 'angular'},
         'angular-route': ['angular']
@@ -17,7 +16,7 @@ require.config({
 
 require(['angular', 'angular-route','app', 'loginModule', 'view1'], function() {
     angular.element(document).ready(function() {
-        angular.bootstrap(document, ['app']);
+        angular.bootstrap(document, ['view1', 'app']);
     });
 
  //angular.bootstrap(document, ['app']);
