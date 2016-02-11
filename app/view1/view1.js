@@ -1,6 +1,6 @@
-'use strict';
 define (['angular', 'angular-route'],function () {
 
+  'use strict'
   var view1module = angular.module('view1', ['ngRoute', 'loginModule']);
 
   view1module.config(['$routeProvider', function($routeProvider) {
