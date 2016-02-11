@@ -4,7 +4,7 @@
 define (['angular'], function ()
 {
     var loginModule = angular.module('loginModule', []);
-    loginModule.factory('login',['$http', function($http)
+    loginModule.factory('login',['$http','$location', function($http,$location)
     {
         //var _response;
         var service = {};
@@ -26,6 +26,7 @@ define (['angular'], function ()
                 }
             }).then(function successCallback(response) {
                 console.log(response.data.accessToken);
+                $location.path( "/view2" );
             }, function errorCallback(response) {
                 console.log('errro sts');
             });
